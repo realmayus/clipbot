@@ -1,4 +1,5 @@
-import requests, os, clipboard, sys, webbrowser, configparser
+#!/usr/bin/python3
+import requests, clipboard, sys, webbrowser, configparser, notify2
 from PyQt5 import QtWidgets, QtGui, QtCore, uic
 from PyQt5.QtWidgets import QApplication
 
@@ -37,9 +38,13 @@ def set_chat(new_chat: str):
 def send_clipboard():
     response = requests.get('https://api.telegram.org/bot' + str(get_token()) + '/sendMessage?chat_id=' + str(get_chat()) + '&parse_mode=Markdown&text=' + clipboard.paste()) # Executing the API call, sending telegram the clipboard's contents
     if response.json()['ok'] == True: # Response is "ok"
-        os.system('notify-send "clipbot" "Clipboard has been sent via Telegram bot."') # Sending success message to OS
+        n = notify2.Notification("clipbot", "Clipboard sent successfully!")
+        n.show()
+        #os.system('notify-send "clipbot" "Clipboard has been sent via Telegram bot."') # Sending success message to OS
     else: # Response is not "ok"
-        os.system('notify-send "clipbot" "Couldnt send message (' + str(response.status_code) + '): ' + response.json()['description'] + '."') # Sending Notification to OS with error and -code
+        n = notify2.Notification("clipbot", "Couldn't send message (" + str(response.status_code) + "): " + response.json()['description'] + ".")
+        n.show()
+        #os.system('notify-send "clipbot" "Couldnt send message (' + str(response.status_code) + '): ' + response.json()['description'] + '."') # Sending Notification to OS with error and -code
 
 ######
 # UI Stuff
@@ -98,6 +103,7 @@ class Preferences(QtWidgets.QMainWindow):
         set_chat(self.lineEdit_2.text()) # Setting config values to values in text boxes
         set_token(self.lineEdit.text()) # ^
         self.close() # Closing pref window
+        n = notify2.Notification("clipbot", "Credentials saved!").show()
         print("Saved new credentials.") # Logging a credentials change
 
     def cancel(self): # User clicked on cancel button
@@ -105,6 +111,7 @@ class Preferences(QtWidgets.QMainWindow):
 
     def help(self): # User clicked on Help button
         webbrowser.open('https://github.com/realmayus/clipbot/blob/master/README.md') # Opening a web browser window with the README.md page for help
+        n = notify2.Notification("clipbot", "Help opened.").show()
         print("Opened browser window with URL https://github.com/realmayus/clipbot/blob/master/README.md")
 
 class SystemTrayApp:
@@ -118,5 +125,6 @@ class SystemTrayApp:
     def run(self):
         sys.exit(self._app.exec_())
 
-
+notify2.init("clipbot")
+n = notify2.Notification("clipbot", "Clipbot is now active! Click the system tray icon for a menu.").show()
 SystemTrayApp().run()
