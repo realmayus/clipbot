@@ -100,8 +100,8 @@ class Preferences(QtWidgets.QMainWindow):
     def cancel(self):
         self.close()
     def help(self):
-        webbrowser.open('https://github.com/realmayus/clipbot/README.md')
-        print("Opened browser window with URL https://github.com/realmayus/clipbot/README.md")
+        webbrowser.open('https://github.com/realmayus/clipbot/blob/master/README.md')
+        print("Opened browser window with URL https://github.com/realmayus/clipbot/blob/master/README.md")
 
 class SystemTrayApp:
     def __init__(self):
