@@ -25,7 +25,7 @@ A small, lightweight python app that sends you your clipboard via Telegram. Only
 5. Open the main file with `python3 clipbot.py`
 6. You should now see a clipboard icon in your system tray. Depending on your OS, it might be at the top right of your screen or at the bottom right.
 7. Click that icon and then on "Preferences"
-8. Fill out the Bot Token and ChatID fields ([How to get those values]())
+8. Fill out the Bot Token and ChatID fields ([How to get those values](https://github.com/realmayus/clipbot/wiki/How-to-get-your-credentials))
 9. Click on "Save"
 10. Copy something to your clipboard and then click the icon in your system tray and click "Send Clipboard"
 11. Done! Profit!
