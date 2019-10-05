@@ -20,7 +20,7 @@ A small, lightweight python app that sends you your clipboard via Telegram. Only
   ```ini
   [config]
   token = 
-  chat  
+  chat = 
   ```
 5. Open the main file with `python3 clipbot.py`
 6. You should now see a clipboard icon in your system tray. Depending on your OS, it might be at the top right of your screen or at the bottom right.
