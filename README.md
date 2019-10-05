@@ -29,3 +29,6 @@ A small, lightweight python app that sends you your clipboard via Telegram. Only
 9. Click on "Save"
 10. Copy something to your clipboard and then click the icon in your system tray and click "Send Clipboard"
 11. Done! Profit!
+
+## Questions? Bugs?
+Please, for god's sake, file a bug report if you have found any bugs or have any questions! I am so happy to help you! There are no dumb questions!
